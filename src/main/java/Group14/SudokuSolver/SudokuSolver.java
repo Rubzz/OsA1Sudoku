@@ -85,4 +85,14 @@ public class SudokuSolver {
             return true;
         else return false;
     }
+
+    public void mergeArrayLists(ArrayList<String> mergeList)
+    {
+        getSudokuSolver().addAll(mergeList);
+    }
+
+    public ArrayList<String> getSudokuSolver()
+    {
+        return sudoku;
+    }
 }
