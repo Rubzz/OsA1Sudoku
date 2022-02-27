@@ -3,7 +3,7 @@ package Group14.SudokuSolver;
 import java.util.ArrayList;
 
 public class SudokuSolver {
-    private ArrayList<String> sudoku;
+    public ArrayList<String> sudoku = new ArrayList<>();
 
     private void addNumber(int number) {
         this.sudoku.add("" + number);

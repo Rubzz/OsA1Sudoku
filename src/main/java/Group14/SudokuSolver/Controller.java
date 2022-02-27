@@ -19,9 +19,9 @@ import java.io.IOException;
 
 public class Controller {
     private static String version = "V 0.1-SNAPSHOT";
-    private static String application = "Post Register";
+    private static String application = "SudokuSolver";
 
-    private SudokuSolver sudokuSolver;           //The list holding the Sudoku values
+    private SudokuSolver sudokuSolver = new SudokuSolver();           //The list holding the Sudoku values
 
     /**
      * Initializes the controller.
