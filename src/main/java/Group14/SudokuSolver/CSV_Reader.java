@@ -43,12 +43,13 @@ public class CSV_Reader
         {
             stringToBeSplit = reader.readLine();
             if(stringToBeSplit !=null) {
-                //System.out.println(stringToBeSplit);
                 String[] fields = stringToBeSplit.split(",");
-                for (int i = 0; i<91;i++)
+                for (int i = 0; i<9;i++)
                 {
                     sudokuValues.add(fields[i]);
+                    //System.out.println(fields[i]);
                 }
+                //System.out.println(sudokuValues.size());
             }
         }
         return sudokuValues;
