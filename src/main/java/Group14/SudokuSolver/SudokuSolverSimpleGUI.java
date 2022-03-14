@@ -29,6 +29,7 @@ public class SudokuSolverSimpleGUI extends Application
     public static void main(String[] args)
     {
         launch();
+
     }
 
     /**
@@ -49,12 +50,20 @@ public class SudokuSolverSimpleGUI extends Application
             appStage.show();
 
         } catch (IOException e) {
-            logger.severe("ERROR: An I/O Exception occurred. Cause: "+e.getCause());
+            logger.severe("ERROR: An I/O Exception occurred. Cause: " + e.getCause());
             throw e;
         }
-
-
-
     }
+    //Testing for sudoku
+    /**
+     public static void main(String[] args) {
+        SudokuSolver test = new SudokuSolver();
+        test.addCorrectSudoku();
+        if (test.checkSudoku())
+            System.out.println("works");
+        else System.out.println("not works");
+    }
+
+     */
 }
 
