@@ -39,14 +39,14 @@ public class SudokuSolver implements Runnable  {
      */
     public boolean checkSolveLine(ArrayList<String> sudokuLine) {
 
-        if (sudokuLine.contains("1") && sudokuLine.contains("2") && sudokuLine.contains("3") &&
+        if (!(sudokuLine.contains("1") && sudokuLine.contains("2") && sudokuLine.contains("3") &&
                 sudokuLine.contains("4") && sudokuLine.contains("5") && sudokuLine.contains("6") &&
-                sudokuLine.contains("7") && sudokuLine.contains("8") && sudokuLine.contains("9")) {
-            System.out.println("line is valid");
+                sudokuLine.contains("7") && sudokuLine.contains("8") && sudokuLine.contains("9"))) {
+            System.out.println(threadName+" line is invalid");
             return true;
         }
         else  {
-            System.out.println("line is invalid");
+            System.out.println(threadName+" line is valid");
             return false;
         }
     }
