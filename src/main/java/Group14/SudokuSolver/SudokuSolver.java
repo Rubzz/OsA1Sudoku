@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class SudokuSolver {
     private ArrayList<String> sudoku = new ArrayList<>();
 
+    public SudokuSolver(ArrayList sudoku)   {
+        this.sudoku = sudoku;
+    }
+
     private void addNumber(int number) {
         this.sudoku.add("" + number);
     }
