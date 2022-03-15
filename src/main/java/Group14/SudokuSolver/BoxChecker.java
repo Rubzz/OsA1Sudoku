@@ -6,6 +6,10 @@ public class BoxChecker implements Runnable
 {
     private ArrayList<String> sudoku;
 
+    public BoxChecker(ArrayList<String> sudoku) {
+        this.sudoku = sudoku;
+    }
+
     public void run()   {
         SudokuSolver test = new SudokuSolver(this.sudoku);
         if (!test.checkBoxes())

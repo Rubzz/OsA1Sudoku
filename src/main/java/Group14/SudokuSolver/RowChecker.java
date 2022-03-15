@@ -6,6 +6,10 @@ public class RowChecker implements Runnable
 {
     private ArrayList<String> sudoku;
 
+    public RowChecker(ArrayList<String> sudoku) {
+        this.sudoku = sudoku;
+    }
+
     public void run()   {
         SudokuSolver test = new SudokuSolver(this.sudoku);
         if (!test.checkRows())

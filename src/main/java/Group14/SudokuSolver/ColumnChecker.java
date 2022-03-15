@@ -6,6 +6,10 @@ public class ColumnChecker implements Runnable
 {
     private ArrayList<String> sudoku;
 
+    public ColumnChecker(ArrayList<String> sudoku) {
+        this.sudoku = sudoku;
+    }
+
     public void run()   {
         SudokuSolver test = new SudokuSolver(this.sudoku);
         if (!test.checkColumns())
