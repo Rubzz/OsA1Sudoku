@@ -49,7 +49,7 @@ public class CSV_Reader
                     sudokuValues.add(fields[i]);
                     //System.out.println(fields[i]);
                 }
-                //System.out.println(sudokuValues.size());
+                //System.out.println(sudokuValues.size()+" items in list");
             }
         }
         return sudokuValues;

@@ -7,6 +7,8 @@ public class SudokuSolver implements Runnable  {
     private String threadName;        //Name of the running thread
     private ArrayList<String> sudoku;  //The full sudoku table
     private Thread t;
+    private int testsPassed =0;
+    private int allPassed=27;
 
 
     public SudokuSolver(String threadStatus)
@@ -17,7 +19,9 @@ public class SudokuSolver implements Runnable  {
     }
 
     @Override
-    public void run() {
+    public void run()
+    {
+        System.out.println("");
         System.out.println("Running " +  threadName );
         if( threadName == "RowChecker" ){
             this.checkRows();
@@ -28,8 +32,30 @@ public class SudokuSolver implements Runnable  {
         else if( threadName == "BoxChecker"){
             this.checkBoxes();
         }
+        else if (threadName == "Sudoku result")
+        {
+            checkSudoku();
+        }
+//        try {
+//            wait(200);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
+    }
 
+    public void checkSudoku()
+    {
+
+        if (!(testsPassed==allPassed))
+        {
+            System.out.println("This sudoku table is not valid!");
+        }
+
+        else if ((testsPassed==allPassed))
+        {
+            System.out.println("This sudoku table is valid!");
+        }
     }
 
     /**
@@ -43,11 +69,13 @@ public class SudokuSolver implements Runnable  {
                 sudokuLine.contains("4") && sudokuLine.contains("5") && sudokuLine.contains("6") &&
                 sudokuLine.contains("7") && sudokuLine.contains("8") && sudokuLine.contains("9"))) {
             System.out.println(threadName+" line is invalid");
-            return true;
+            return false;
         }
         else  {
             System.out.println(threadName+" line is valid");
-            return false;
+            testsPassed++;
+
+            return true;
         }
     }
 
@@ -185,9 +213,9 @@ public class SudokuSolver implements Runnable  {
         else return false;
     }
 
-    public String getThreadName() {
-        return threadName;
-    }
+//    public String getThreadName() {
+//        return threadName;
+//    }
 
     public void mergeArrayLists(ArrayList<String> mergeList)
     {
