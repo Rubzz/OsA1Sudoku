@@ -3,7 +3,7 @@ package Group14.SudokuSolver;
 import java.util.ArrayList;
 
 
-public class SudokuSolver implements Runnable  {
+public class SudokuSolver {
     private ArrayList<String> sudoku = new ArrayList<>();
 
     private void addNumber(int number) {
@@ -180,100 +180,19 @@ public class SudokuSolver implements Runnable  {
         getSudokuSolver().addAll(mergeList);
     }
 
-    public ArrayList<String> getSudokuSolver()
-    {
+    /**
+     * returns the sudoku saved in the solver
+     * @return the sudoku as an ArrayList
+     */
+    public ArrayList<String> getSudokuSolver() {
         return sudoku;
     }
 
-    @Override
-    public void run() {
-
+    /**
+     * sets the sudoku in the solver
+     * @param sudoku an arraylist with strings containing the sudoku
+     */
+    public void setSudoku(ArrayList<String> sudoku) {
+        this.sudoku = sudoku;
     }
-
-//     public void run()  {
-//        System.out.println("My first thread is running…");
-//     }
-//    public void addCorrectSudoku() {
-//        this.sudoku.add("9");
-//        this.sudoku.add("2");
-//        this.sudoku.add("5");
-//        this.sudoku.add("6");
-//        this.sudoku.add("3");
-//        this.sudoku.add("1");
-//        this.sudoku.add("8");
-//        this.sudoku.add("4");
-//        this.sudoku.add("7");
-//        this.sudoku.add("6");
-//        this.sudoku.add("1");
-//        this.sudoku.add("8");
-//        this.sudoku.add("5");
-//        this.sudoku.add("7");
-//        this.sudoku.add("4");
-//        this.sudoku.add("2");
-//        this.sudoku.add("9");
-//        this.sudoku.add("3");
-//        this.sudoku.add("3");
-//        this.sudoku.add("7");
-//        this.sudoku.add("4");
-//        this.sudoku.add("9");
-//        this.sudoku.add("8");
-//        this.sudoku.add("2");
-//        this.sudoku.add("5");
-//        this.sudoku.add("6");
-//        this.sudoku.add("1");
-//        this.sudoku.add("7");
-//        this.sudoku.add("4");
-//        this.sudoku.add("9");
-//        this.sudoku.add("8");
-//        this.sudoku.add("2");
-//        this.sudoku.add("6");
-//        this.sudoku.add("1");
-//        this.sudoku.add("3");
-//        this.sudoku.add("5");
-//        this.sudoku.add("8");
-//        this.sudoku.add("5");
-//        this.sudoku.add("2");
-//        this.sudoku.add("4");
-//        this.sudoku.add("1");
-//        this.sudoku.add("3");
-//        this.sudoku.add("9");
-//        this.sudoku.add("7");
-//        this.sudoku.add("6");
-//        this.sudoku.add("1");
-//        this.sudoku.add("6");
-//        this.sudoku.add("3");
-//        this.sudoku.add("7");
-//        this.sudoku.add("9");
-//        this.sudoku.add("5");
-//        this.sudoku.add("4");
-//        this.sudoku.add("8");
-//        this.sudoku.add("2");
-//        this.sudoku.add("2");
-//        this.sudoku.add("8");
-//        this.sudoku.add("7");
-//        this.sudoku.add("3");
-//        this.sudoku.add("5");
-//        this.sudoku.add("9");
-//        this.sudoku.add("6");
-//        this.sudoku.add("1");
-//        this.sudoku.add("4");
-//        this.sudoku.add("4");
-//        this.sudoku.add("9");
-//        this.sudoku.add("1");
-//        this.sudoku.add("2");
-//        this.sudoku.add("6");
-//        this.sudoku.add("7");
-//        this.sudoku.add("3");
-//        this.sudoku.add("5");
-//        this.sudoku.add("8");
-//        this.sudoku.add("5");
-//        this.sudoku.add("3");
-//        this.sudoku.add("6");
-//        this.sudoku.add("1");
-//        this.sudoku.add("4");
-//        this.sudoku.add("8");
-//        this.sudoku.add("7");
-//        this.sudoku.add("2");
-//        this.sudoku.add("9");
-//    }
 }
