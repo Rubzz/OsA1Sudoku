@@ -64,11 +64,11 @@ public class Controller implements Runnable {
 
     @Override
     public void run() {
-        Thread thread1 =new Thread(sudokuSolver.checkRow());
+        Thread thread1 =new Thread(sudokuSolver.checkRows());
         thread1.start();
         thread1.run();
 
-        Thread thread2 =new Thread(sudokuSolver.checkColumn());
+        Thread thread2 =new Thread(sudokuSolver.checkColumns());
         thread2.start();
         thread2.run();
 
