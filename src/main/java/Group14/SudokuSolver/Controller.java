@@ -9,6 +9,7 @@ import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 /**
@@ -18,11 +19,11 @@ import java.io.IOException;
  */
 
 
-public class Controller implements Runnable {
+public class Controller {
     private static String version = "V 0.1-SNAPSHOT";
     private static String application = "SudokuSolver";
+    public ArrayList<String> sudokuTable;
 
-    private SudokuSolver sudokuSolver = new SudokuSolver();           //The list holding the Sudoku values
 
     /**
      * Initializes the controller.
@@ -39,7 +40,7 @@ public class Controller implements Runnable {
     @FXML
     public void importAppendFileDialog() throws IOException
     {
-        sudokuSolver.getSudokuSolver().clear();
+        //sudokuSolver.getSudokuSolver().clear();
         Scene scene = new Scene(new Group());
         Window chooseDialogWindow = scene.getWindow();
         FileChooser fileChooser = new FileChooser();
@@ -59,26 +60,38 @@ public class Controller implements Runnable {
      */
     public void parseFromFile(File file) throws IOException {
         CSV_Reader fileReader = new CSV_Reader();
-        sudokuSolver.mergeArrayLists(fileReader.fileParseToArrayList(file));
-    }
+        SudokuSolver thread1 = new SudokuSolver("RowChecker");
+        SudokuSolver thread2 = new SudokuSolver ("ColumnChecker");
+        SudokuSolver thread3 = new SudokuSolver ("BoxChecker");
 
-    @Override
-    public void run() {
-        Thread thread1 =new Thread(sudokuSolver.checkRows());
-        thread1.start();
+        //thread1.getSudokuSolver().clear();
+        //thread2.getSudokuSolver().clear();
+        //thread3.getSudokuSolver().clear();
+
+        thread1.mergeArrayLists(fileReader.fileParseToArrayList(file));
+        thread2.mergeArrayLists(fileReader.fileParseToArrayList(file));
+        thread3.mergeArrayLists(fileReader.fileParseToArrayList(file));
+
         thread1.run();
-
-        Thread thread2 =new Thread(sudokuSolver.checkColumns());
-        thread2.start();
         thread2.run();
-
-        Thread thread3 =new Thread(sudokuSolver.checkBoxes());
-        thread3.start();
         thread3.run();
 
-
-
-
     }
+
+//    @Override
+//    public void run() {
+//        Thread thread1 =new Thread(sudokuSolver);
+//        thread1.start();
+//        thread1.run();
+//
+//        Thread thread2 =new Thread(sudokuSolver);
+//        thread2.start();
+//        thread2.run();
+//
+//        Thread thread3 =new Thread(sudokuSolver);
+//        thread3.start();
+//        thread3.run();}
+
+
 
 }

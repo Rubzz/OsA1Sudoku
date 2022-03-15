@@ -4,22 +4,32 @@ import java.util.ArrayList;
 
 
 public class SudokuSolver implements Runnable  {
-    private ArrayList<String> sudoku = new ArrayList<>();
+    private String threadName;        //Name of the running thread
+    private ArrayList<String> sudoku;  //The full sudoku table
+    private Thread t;
 
-    private void addNumber(int number) {
-        this.sudoku.add("" + number);
+
+    public SudokuSolver(String threadStatus)
+    {
+        this.threadName = threadStatus;
+        sudoku = new ArrayList();
+
     }
 
-    private void addSudokuLine() {
-        this.sudoku.add("1");
-        this.sudoku.add("2");
-        this.sudoku.add("3");
-        this.sudoku.add("4");
-        this.sudoku.add("5");
-        this.sudoku.add("6");
-        this.sudoku.add("7");
-        this.sudoku.add("8");
-        this.sudoku.add("9");
+    @Override
+    public void run() {
+        System.out.println("Running " +  threadName );
+        if( threadName == "RowChecker" ){
+            this.checkRows();
+        }
+        else if( threadName == "ColumnChecker" ){
+            this.checkColumns();
+        }
+        else if( threadName == "BoxChecker"){
+            this.checkBoxes();
+        }
+
+
     }
 
     /**
@@ -28,10 +38,10 @@ public class SudokuSolver implements Runnable  {
      * @return true or false based on if the array contains 1-9 or not
      */
     public boolean checkSolveLine(ArrayList<String> sudokuLine) {
-        ArrayList<String> line = sudokuLine;
-        if (line.contains("1") && line.contains("2") && line.contains("3") &&
-                line.contains("4") && line.contains("5") && line.contains("6") &&
-                line.contains("7") && line.contains("8") && line.contains("9")) {
+
+        if (sudokuLine.contains("1") && sudokuLine.contains("2") && sudokuLine.contains("3") &&
+                sudokuLine.contains("4") && sudokuLine.contains("5") && sudokuLine.contains("6") &&
+                sudokuLine.contains("7") && sudokuLine.contains("8") && sudokuLine.contains("9")) {
             System.out.println("line is valid");
             return true;
         }
@@ -175,6 +185,10 @@ public class SudokuSolver implements Runnable  {
         else return false;
     }
 
+    public String getThreadName() {
+        return threadName;
+    }
+
     public void mergeArrayLists(ArrayList<String> mergeList)
     {
         getSudokuSolver().addAll(mergeList);
@@ -185,10 +199,31 @@ public class SudokuSolver implements Runnable  {
         return sudoku;
     }
 
-    @Override
-    public void run() {
-
+    public void start () {
+        System.out.println("Starting " + threadName);
+        if (t == null) {
+            t = new Thread(this);
+            t.start();
+            t.setName(threadName);
+        }
     }
+
+
+//    private void addNumber(int number) {
+//        this.sudoku.add("" + number);
+//    }
+//
+//    private void addSudokuLine() {
+//        this.sudoku.add("1");
+//        this.sudoku.add("2");
+//        this.sudoku.add("3");
+//        this.sudoku.add("4");
+//        this.sudoku.add("5");
+//        this.sudoku.add("6");
+//        this.sudoku.add("7");
+//        this.sudoku.add("8");
+//        this.sudoku.add("9");
+//    }
 
 //     public void run()  {
 //        System.out.println("My first thread is running…");
