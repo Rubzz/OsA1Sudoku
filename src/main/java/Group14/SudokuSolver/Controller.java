@@ -63,23 +63,25 @@ public class Controller {
         SudokuSolver thread1 = new SudokuSolver("RowChecker");
         SudokuSolver thread2 = new SudokuSolver ("ColumnChecker");
         SudokuSolver thread3 = new SudokuSolver ("BoxChecker");
+        //SudokuSolver thread4 = new SudokuSolver ("Sudoku result");
+
 
         thread1.getSudokuSolver().clear();
         thread2.getSudokuSolver().clear();
         thread3.getSudokuSolver().clear();
+        System.out.println("Checking sudoku values..");
+        System.out.println("");
 
-//        thread1.start();
-//        thread2.start();
-//        thread3.start();
-
-        thread1.mergeArrayLists(fileReader.fileParseToArrayList(file));
-        thread2.mergeArrayLists(fileReader.fileParseToArrayList(file));
-        thread3.mergeArrayLists(fileReader.fileParseToArrayList(file));
+        sudokuTable=fileReader.fileParseToArrayList(file);
+        thread1.mergeArrayLists(sudokuTable);
+        thread2.mergeArrayLists(sudokuTable);
+        thread3.mergeArrayLists(sudokuTable);
 
 
         thread1.run();
         thread2.run();
         thread3.run();
+        //thread4.run();
 
     }
 

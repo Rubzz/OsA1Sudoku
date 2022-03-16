@@ -6,10 +6,9 @@ import java.util.ArrayList;
 public class SudokuSolver implements Runnable  {
     private String threadName;        //Name of the running thread
     private ArrayList<String> sudoku;  //The full sudoku table
-    private Thread t;
     private int testsPassed =0;
+    private int testsRan=0;
     private int allPassed=27;
-
 
     public SudokuSolver(String threadStatus)
     {
@@ -21,8 +20,8 @@ public class SudokuSolver implements Runnable  {
     @Override
     public void run()
     {
-        System.out.println("");
-        System.out.println("Running " +  threadName );
+        System.out.println();
+        System.out.println("Running " +  threadName+":" );
         if( threadName == "RowChecker" ){
             this.checkRows();
         }
@@ -34,7 +33,7 @@ public class SudokuSolver implements Runnable  {
         }
         else if (threadName == "Sudoku result")
         {
-            checkSudoku();
+            this.checkSudoku();
         }
 //        try {
 //            wait(200);
@@ -47,15 +46,16 @@ public class SudokuSolver implements Runnable  {
     public void checkSudoku()
     {
 
-        if (!(testsPassed==allPassed))
+        if (!((testsPassed==allPassed))&&(testsRan>testsPassed))
         {
             System.out.println("This sudoku table is not valid!");
         }
 
-        else if ((testsPassed==allPassed))
+        else if ((testsPassed==allPassed)&&(testsRan>testsPassed))
         {
             System.out.println("This sudoku table is valid!");
         }
+
     }
 
     /**
@@ -69,10 +69,13 @@ public class SudokuSolver implements Runnable  {
                 sudokuLine.contains("4") && sudokuLine.contains("5") && sudokuLine.contains("6") &&
                 sudokuLine.contains("7") && sudokuLine.contains("8") && sudokuLine.contains("9"))) {
             System.out.println(threadName+" line is invalid");
+            testsRan++;
+
             return false;
         }
         else  {
             System.out.println(threadName+" line is valid");
+            testsRan++;
             testsPassed++;
 
             return true;
@@ -227,116 +230,5 @@ public class SudokuSolver implements Runnable  {
         return sudoku;
     }
 
-    public void start () {
-        System.out.println("Starting " + threadName);
-        if (t == null) {
-            t = new Thread(this);
-            t.start();
-            t.setName(threadName);
-        }
+
     }
-
-
-//    private void addNumber(int number) {
-//        this.sudoku.add("" + number);
-//    }
-//
-//    private void addSudokuLine() {
-//        this.sudoku.add("1");
-//        this.sudoku.add("2");
-//        this.sudoku.add("3");
-//        this.sudoku.add("4");
-//        this.sudoku.add("5");
-//        this.sudoku.add("6");
-//        this.sudoku.add("7");
-//        this.sudoku.add("8");
-//        this.sudoku.add("9");
-//    }
-
-//     public void run()  {
-//        System.out.println("My first thread is running…");
-//     }
-//    public void addCorrectSudoku() {
-//        this.sudoku.add("9");
-//        this.sudoku.add("2");
-//        this.sudoku.add("5");
-//        this.sudoku.add("6");
-//        this.sudoku.add("3");
-//        this.sudoku.add("1");
-//        this.sudoku.add("8");
-//        this.sudoku.add("4");
-//        this.sudoku.add("7");
-//        this.sudoku.add("6");
-//        this.sudoku.add("1");
-//        this.sudoku.add("8");
-//        this.sudoku.add("5");
-//        this.sudoku.add("7");
-//        this.sudoku.add("4");
-//        this.sudoku.add("2");
-//        this.sudoku.add("9");
-//        this.sudoku.add("3");
-//        this.sudoku.add("3");
-//        this.sudoku.add("7");
-//        this.sudoku.add("4");
-//        this.sudoku.add("9");
-//        this.sudoku.add("8");
-//        this.sudoku.add("2");
-//        this.sudoku.add("5");
-//        this.sudoku.add("6");
-//        this.sudoku.add("1");
-//        this.sudoku.add("7");
-//        this.sudoku.add("4");
-//        this.sudoku.add("9");
-//        this.sudoku.add("8");
-//        this.sudoku.add("2");
-//        this.sudoku.add("6");
-//        this.sudoku.add("1");
-//        this.sudoku.add("3");
-//        this.sudoku.add("5");
-//        this.sudoku.add("8");
-//        this.sudoku.add("5");
-//        this.sudoku.add("2");
-//        this.sudoku.add("4");
-//        this.sudoku.add("1");
-//        this.sudoku.add("3");
-//        this.sudoku.add("9");
-//        this.sudoku.add("7");
-//        this.sudoku.add("6");
-//        this.sudoku.add("1");
-//        this.sudoku.add("6");
-//        this.sudoku.add("3");
-//        this.sudoku.add("7");
-//        this.sudoku.add("9");
-//        this.sudoku.add("5");
-//        this.sudoku.add("4");
-//        this.sudoku.add("8");
-//        this.sudoku.add("2");
-//        this.sudoku.add("2");
-//        this.sudoku.add("8");
-//        this.sudoku.add("7");
-//        this.sudoku.add("3");
-//        this.sudoku.add("5");
-//        this.sudoku.add("9");
-//        this.sudoku.add("6");
-//        this.sudoku.add("1");
-//        this.sudoku.add("4");
-//        this.sudoku.add("4");
-//        this.sudoku.add("9");
-//        this.sudoku.add("1");
-//        this.sudoku.add("2");
-//        this.sudoku.add("6");
-//        this.sudoku.add("7");
-//        this.sudoku.add("3");
-//        this.sudoku.add("5");
-//        this.sudoku.add("8");
-//        this.sudoku.add("5");
-//        this.sudoku.add("3");
-//        this.sudoku.add("6");
-//        this.sudoku.add("1");
-//        this.sudoku.add("4");
-//        this.sudoku.add("8");
-//        this.sudoku.add("7");
-//        this.sudoku.add("2");
-//        this.sudoku.add("9");
-//    }
-}
