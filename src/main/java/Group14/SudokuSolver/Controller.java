@@ -63,7 +63,7 @@ public class Controller {
         SudokuSolver thread1 = new SudokuSolver("RowChecker");
         SudokuSolver thread2 = new SudokuSolver ("ColumnChecker");
         SudokuSolver thread3 = new SudokuSolver ("BoxChecker");
-        //SudokuSolver thread4 = new SudokuSolver ("Sudoku result");
+        SudokuSolver thread4 = new SudokuSolver ("Sudoku result");
 
 
         thread1.getSudokuSolver().clear();
@@ -81,7 +81,7 @@ public class Controller {
         thread1.run();
         thread2.run();
         thread3.run();
-        //thread4.run();
+        thread4.run();
 
     }
 

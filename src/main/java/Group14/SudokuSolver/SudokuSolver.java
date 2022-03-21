@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class SudokuSolver implements Runnable  {
     private String threadName;        //Name of the running thread
     private ArrayList<String> sudoku;  //The full sudoku table
-    private int testsPassed =0;
-    private int testsRan=0;
-    private int allPassed=27;
+    private static int testsPassed =0;
+    private static int testsRan=0;
+    private static final int allPassed=27;
 
     public SudokuSolver(String threadStatus)
     {
@@ -46,12 +46,12 @@ public class SudokuSolver implements Runnable  {
     public void checkSudoku()
     {
 
-        if (!((testsPassed==allPassed))&&(testsRan>testsPassed))
+        if (!(testsPassed==allPassed))
         {
             System.out.println("This sudoku table is not valid!");
         }
 
-        else if ((testsPassed==allPassed)&&(testsRan>testsPassed))
+        else if ((testsPassed==allPassed))
         {
             System.out.println("This sudoku table is valid!");
         }
@@ -216,9 +216,6 @@ public class SudokuSolver implements Runnable  {
         else return false;
     }
 
-//    public String getThreadName() {
-//        return threadName;
-//    }
 
     public void mergeArrayLists(ArrayList<String> mergeList)
     {
